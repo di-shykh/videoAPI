@@ -1,0 +1,22 @@
+{
+  "name": "videoapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/di-shykh/videoAPI.git",
+  "author": "di-shykh <di49@mail.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "dev": "nodemon --inspect dist/index.js",
+    "watch": "tsc -w"
+  }
+}
