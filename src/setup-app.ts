@@ -2,7 +2,7 @@ import express, {Express, Request, Response} from 'express';
 import {videoRouter} from './videos/routers/videos.router';
 import {HttpStatus} from './core/types/http-statuses';
 
-export const setupApp = (app: Express): void => {
+export const setupApp = (app: Express): Express=> {
     app.use(express.json());
 
     app.get('/', (request: Request, res: Response) => {
