@@ -1,15 +1,12 @@
-import {ResourceType} from "../../core/types/resource-type";
 import {Resolutions} from "../types/video";
 
 export type VideoInput = {
-    type: ResourceType.Videos;
-    attributes: {
-        title:	string;
-        author:	string;
-        canBeDownloaded: boolean;
-        minAgeRestriction:	number|null;
-        createdAt: string;
-        publicationDate: string;
-        availableResolutions: Resolutions[]
-    };
+    title:	string;
+    author:	string;
+    availableResolutions: Resolutions[]
+
+    canBeDownloaded: boolean;
+    minAgeRestriction:	number|null;
+    createdAt: string;
+    publicationDate: string;
 }
