@@ -2,7 +2,7 @@ import  express from 'express';
 import {setupApp} from './setup-app';
 
 //creating App
-constapp=express();
+const app=express();
 setupApp(app);
 
 const port = process.env.PORT || 5001;

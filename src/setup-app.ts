@@ -9,7 +9,7 @@ export const setupApp = (app: Express): Express=> {
         res.status (HttpStatus.Ok).send('Server started');
     });
 
-    app.use('hometask_01/api/videos', videoRouter);
+    app.use('/hometask_01/api/videos', videoRouter);
 
     return app;
 }

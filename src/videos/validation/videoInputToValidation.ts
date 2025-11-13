@@ -1,43 +1,33 @@
 import {ValidationError} from "../types/validationsErrors";
 import {VideoInput} from "../dto/video.input";
-import {VideoCreateInput} from "../dto/video-create.input";
 import {Resolutions} from "../types/video";
 
 export const videoInputToValidation = (
     data: VideoInput
 ): ValidationError[] =>{
     const errors: ValidationError[] = [];
-    console.log('validation data:', data);
-    const {
-        title,
-        author,
-        canBeDownloaded,
-        minAgeRestriction,
-        createdAt,
-        publicationDate,
-        availableResolutions,
-    } = data.attributes;
-    if(!title || typeof title !=='string'||  title.trim().length<2||author.trim().length>40){
+
+    if(!data.title || typeof data.title !== 'string' ||  data.title.trim().length < 2 || data.author.trim().length > 40){
         errors.push({field: 'title', message: 'Invalid title'});
     }
-    if(!author || typeof author !=='string'||  author.trim().length<2||author.trim().length>20){
+    if(!data.author || typeof data.author !== 'string' ||  data.author.trim().length < 2 || data.author.trim().length > 20){
         errors.push({field: 'author', message: 'Invalid author'});
     }
-    if(canBeDownloaded === undefined || typeof canBeDownloaded !=='boolean'){
+    if(data.canBeDownloaded !== undefined && typeof data.canBeDownloaded !== 'boolean'){
         errors.push({field: 'canBeDownloaded', message: 'Invalid canBeDownloaded'});
     }
-    if (minAgeRestriction) {
-        if(!Number.isInteger(minAgeRestriction) || minAgeRestriction<1||minAgeRestriction>18){
+    if (data.minAgeRestriction) {
+        if(!Number.isInteger(data.minAgeRestriction) || data.minAgeRestriction < 1 || data.minAgeRestriction > 18){
             errors.push({field: 'minAgeRestriction', message: 'Invalid minAgeRestriction. It must be an integer between 1 and 18.'});
         }
     }
-    if(!createdAt || typeof createdAt!=='string'|| !createdAt.includes('T')){
+    if(data.createdAt !== undefined && (typeof data.createdAt !== 'string' || !data.createdAt.includes('T'))){
         errors.push({field: 'createdAt', message: 'Invalid createdAt.'});
     }
-    if(!publicationDate|| typeof publicationDate!=='string'|| !publicationDate.includes('T')){
+    if(data.publicationDate !== undefined && (typeof data.publicationDate!=='string' || !data.publicationDate.includes('T'))){
         errors.push({field: 'publicationDate', message: 'Invalid publicationDate'});
     }
-    if (!availableResolutions || availableResolutions.length<1 || availableResolutions.length>8 || !areAllResolutionsValid(availableResolutions)){
+    if (!data.availableResolutions || data.availableResolutions.length < 1 || data.availableResolutions.length > 8 || !areAllResolutionsValid(data.availableResolutions)) {
         errors.push({field: 'availableResolutions', message: 'Invalid available resolutions'});
     }
     return errors;
