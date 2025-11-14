@@ -5,8 +5,8 @@ export type VideoInput = {
     author:	string;
     availableResolutions: Resolutions[]
 
-    canBeDownloaded: boolean;
-    minAgeRestriction:	number|null;
-    createdAt: string;
-    publicationDate: string;
+    canBeDownloaded?: boolean;
+    minAgeRestriction?:	number|null;
+    createdAt?: string;
+    publicationDate?: string;
 }
