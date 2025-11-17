@@ -1,6 +1,7 @@
 import express, {Express, Request, Response} from 'express';
 import {videoRouter} from './videos/routers/videos.router';
 import {HttpStatus} from './core/types/http-statuses';
+import {testingRouter} from './testing/routers/testing.router';
 
 export const setupApp = (app: Express): Express=> {
     app.use(express.json());
@@ -10,6 +11,7 @@ export const setupApp = (app: Express): Express=> {
     });
 
     app.use('/hometask_01/api/videos', videoRouter);
+    app.use('/hometask_01/api/testing', testingRouter);
 
     return app;
 }

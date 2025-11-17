@@ -21,10 +21,10 @@ export const videoInputToValidation = (
             errors.push({field: 'minAgeRestriction', message: 'Invalid minAgeRestriction. It must be an integer between 1 and 18.'});
         }
     }
-    if(data.createdAt !== undefined && (typeof data.createdAt !== 'string' || !data.createdAt.includes('T'))){
+    if(data.createdAt !== undefined && (!isDatetimeISOstring(data.createdAt) || !data.createdAt.includes('T'))){
         errors.push({field: 'createdAt', message: 'Invalid createdAt.'});
     }
-    if(data.publicationDate !== undefined && (typeof data.publicationDate!=='string' || !data.publicationDate.includes('T'))){
+    if(data.publicationDate !== undefined && (!isDatetimeISOstring(data.publicationDate) || !data.publicationDate.includes('T'))){
         errors.push({field: 'publicationDate', message: 'Invalid publicationDate'});
     }
     if (!data.availableResolutions || data.availableResolutions.length < 1 || data.availableResolutions.length > 8 || !areAllResolutionsValid(data.availableResolutions)) {
@@ -35,5 +35,10 @@ export const videoInputToValidation = (
 function areAllResolutionsValid(resolutions: string[]):boolean{
     const validValues: string[] = Object.values(Resolutions);
     return resolutions.every(res => validValues.includes(res));
+}
+function isDatetimeISOstring(str: string): boolean {
+    if(typeof str !== 'string') return false;
+    const date = new Date(str);
+    return !isNaN(date.getTime());
 }
 
