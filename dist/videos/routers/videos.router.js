@@ -30,7 +30,7 @@ exports.videoRouter
     res.status(http_statuses_1.HttpStatus.Ok).send(video);
 })
     .post('', (req, res) => {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f;
     const errors = (0, videoInputToValidation_1.videoInputToValidation)(req.body);
     if (errors.length > 0) {
         res.status(http_statuses_1.HttpStatus.BadRequest).send((0, error_utils_1.createErrorMessages)(errors));
@@ -42,8 +42,8 @@ exports.videoRouter
         author: req.body.author,
         canBeDownloaded: (_c = req.body.canBeDownloaded) !== null && _c !== void 0 ? _c : false,
         minAgeRestriction: (_d = req.body.minAgeRestriction) !== null && _d !== void 0 ? _d : null,
-        createdAt: new Date().toISOString(),
-        publicationDate: (_e = req.body.publicationDate) !== null && _e !== void 0 ? _e : new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+        createdAt: (_e = req.body.createdAt) !== null && _e !== void 0 ? _e : new Date().toISOString(),
+        publicationDate: (_f = req.body.publicationDate) !== null && _f !== void 0 ? _f : new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
         availableResolutions: req.body.availableResolutions,
     };
     in_memory_db_1.db.videos.push(newVideo);

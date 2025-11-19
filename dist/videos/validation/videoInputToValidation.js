@@ -4,7 +4,7 @@ exports.videoInputToValidation = void 0;
 const video_1 = require("../types/video");
 const videoInputToValidation = (data) => {
     const errors = [];
-    if (!data.title || typeof data.title !== 'string' || data.title.trim().length < 2 || data.author.trim().length > 40) {
+    if (!data.title || typeof data.title !== 'string' || data.title.trim().length < 2 || data.title.trim().length > 40) {
         errors.push({ field: 'title', message: 'Invalid title' });
     }
     if (!data.author || typeof data.author !== 'string' || data.author.trim().length < 2 || data.author.trim().length > 20) {

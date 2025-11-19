@@ -49,7 +49,7 @@ videoRouter
             author: req.body.author,
             canBeDownloaded: req.body.canBeDownloaded ?? false,
             minAgeRestriction: req.body.minAgeRestriction ?? null,
-            createdAt: new Date().toISOString(),
+            createdAt: req.body.createdAt ?? new Date().toISOString(),
             publicationDate: req.body.publicationDate ?? new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
             availableResolutions: req.body.availableResolutions,
         }
